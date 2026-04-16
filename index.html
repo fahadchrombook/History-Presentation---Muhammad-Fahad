@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Conflicts After WWII</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Three.js for 3D Globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<style>
+body, html {
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+  font-family:'Inter', sans-serif;
+  background:#0f2027;
+  color:#fff;
+}
+
+/* Animated abstract background canvas */
+#backgroundCanvas{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:-3;
+}
+
+/* 3D Globe Background */
+#globe-background{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:-2;
+  pointer-events:none;
+}
+
+/* Slider container */
+.slider{
+  display:flex;
+  height:100vh;
+  transition:transform 1s ease;
+}
+
+/* Each slide */
+.slide{
+  min-width:100vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:60px;
+  box-sizing:border-box;
+  opacity:0;
+  transform:translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.slide.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Text styling */
+.text{
+  width:45%;
+}
+.text h1,.text h2{
+  font-family:'Orbitron', sans-serif;
+  color:#00e5ff;
+  margin-bottom:20px;
+}
+.text h1{font-size:50px;}
+.text h2{font-size:40px;}
+.text p{font-size:18px;line-height:1.7;}
+
+/* Images */
+.visual{
+  width:45%;
+  display:flex; justify-content:center;
+}
+.visual img{
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.8);
+  transition: transform 0.6s, box-shadow 0.6s;
+  cursor:pointer;
+}
+.visual img:hover{
+  transform: scale(1.05);
+  box-shadow:0 30px 70px rgba(0,255,255,0.6);
+}
+
+/* Navigation buttons */
+.nav{
+  position:fixed;
+  bottom:30px;
+  width:100%;
+  text-align:center;
+}
+button{
+  background:#00e5ff;
+  border:none;
+  padding:14px 26px;
+  margin:10px;
+  font-size:18px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{ background:#00bcd4; }
+
+</style>
+</head>
+<body>
+
+<!-- Animated abstract background -->
+<canvas id="backgroundCanvas"></canvas>
+
+<!-- 3D Globe -->
+<div id="globe-background"></div>
+
+<!-- Slider -->
+<div class="slider" id="slider">
+
+<!-- Intro Slide -->
+<div class="slide active">
+  <div class="text">
+    <h1>Global Conflicts After WWII</h1>
+    <p>
+      History Presentation<br>
+      Written By: Muhammad Fahad <br>
+      Teacher: Miss Ayesha Ammar<br>
+      Date: 4/16/2026<br>
+      This presentation explores major global conflicts after WWII.<br>
+      Key events, causes, outcomes, and impacts are explained concisely.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/WorldMap.jpg" alt="World Map">
+  </div>
+</div>
+
+<!-- Post WWII Tensions Slide -->
+<div class="slide">
+  <div class="text">
+    <h2>Post World War II Tensions</h2>
+    <p>
+      After WWII, the world divided into the US and USSR superpowers. 
+      Europe was split politically and ideologically. 
+      NATO and the Warsaw Pact were formed. 
+      Nations aligned with either capitalism or communism. 
+      Tensions sparked proxy wars worldwide. 
+      Reconstruction of Europe began alongside military buildup. 
+      These tensions set the stage for the Cold War.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/PostWorldWar2.jpg" alt="Post WWII Tensions">
+  </div>
+</div>
+
+<!-- Berlin Wall -->
+<div class="slide">
+  <div class="text">
+    <h2>The Iron Curtain & Berlin Wall</h2>
+    <p>
+      Europe divided with the "Iron Curtain" between East and West. 
+      East Germany under Soviet control, West Germany democratic. 
+      Berlin was split, leading to tension and migration issues. 
+      The Berlin Wall was built in 1961 to prevent escapes. 
+      It became a global symbol of the Cold War. 
+      Walls and checkpoints defined daily life in Berlin. 
+      Its fall in 1989 marked Cold War decline.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/BerlinWall.jpg" alt="Berlin Wall">
+  </div>
+</div>
+
+<!-- Korean War -->
+<div class="slide">
+  <div class="text">
+    <h2>The Korean War (1950–1953)</h2>
+    <p>
+      North Korea invaded South Korea in 1950. 
+      UN forces, led by the US, intervened. 
+      China supported North Korea militarily. 
+      Battles occurred around the 38th parallel. 
+      Armistice signed in 1953, leaving Korea divided. 
+      Millions of military and civilian casualties. 
+      Set precedent for Cold War conflicts in Asia.
+      
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/KoreanWar.jpg" alt="Korean War">
+  </div>
+</div>
+
+<!-- Vietnam War -->
+<div class="slide">
+  <div class="text">
+    <h2>The Vietnam War (1955–1975)</h2>
+    <p>
+      North Vietnam aimed to unify under communism. 
+      US supported South Vietnam to stop communist expansion. 
+      Guerilla warfare and bombings devastated the region. 
+      Millions of lives were lost. 
+      Anti-war protests rose globally. 
+      Saigon fell in 1975; North Vietnam victorious. 
+      Conflict left long-lasting social and political impact.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/VietnamWar.jpg" alt="Vietnam War">
+  </div>
+</div>
+
+<!-- Rwanda Genocide -->
+<div class="slide">
+  <div class="text">
+    <h2>Rwanda Genocide (1994)</h2>
+    <p>
+      Ethnic tensions between Hutu and Tutsi exploded. 
+      Extremists orchestrated mass killings across Rwanda. 
+      800,000 people were killed in 100 days. 
+      Refugees fled to neighboring countries. 
+      Global response was delayed and insufficient. 
+      It highlighted the dangers of ethnic hatred. 
+      Became a key case study in humanitarian law.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/RwandaWar.jpg" alt="Rwanda Genocide">
+  </div>
+</div>
+
+<!-- First Gulf War -->
+<div class="slide">
+  <div class="text">
+    <h2>First Gulf War (1990–1991)</h2>
+    <p>
+      Iraq invaded Kuwait, creating global crisis. 
+      US-led coalition launched Operation Desert Storm. 
+      Airstrikes and ground forces liberated Kuwait. 
+      Modern military technology demonstrated power. 
+      Iraq suffered heavy losses. 
+      Regional tensions remained post-war. 
+      Oil and economy influenced international policy.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/GulfWar1.jpg" alt="First Gulf War">
+  </div>
+</div>
+
+<!-- War on Terror -->
+<div class="slide">
+  <div class="text">
+    <h2>War on Terror</h2>
+    <p>
+      9/11 attacks by Al-Qaeda led by Osama bin Laden shocked the world. 
+      US launched counter-terrorism campaigns globally. 
+      Afghanistan invaded to remove Taliban & Al-Qaeda. 
+      Security and intelligence operations expanded worldwide. 
+      Allied countries joined anti-terror missions. 
+      Terrorist networks disrupted but threats persisted. 
+      War reshaped global security and policy.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/WarOnTerror.jpg" alt="War on Terror">
+  </div>
+</div>
+
+<!-- Second Gulf War -->
+<div class="slide">
+  <div class="text">
+    <h2>Second Gulf War (Iraq 2003)</h2>
+    <p>
+      US invaded Iraq to remove Saddam Hussein. 
+      Iraqi government collapsed; insurgency rose. 
+      Coalition forces conducted reconstruction and security missions. 
+      Sectarian violence destabilized the region. 
+      International debate over war justification ensued. 
+      Long-term effects shaped Middle East politics. 
+      Conflict continued for years after invasion.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/GulfWar2.jpg" alt="Second Gulf War">
+  </div>
+</div>
+
+<!-- Afghanistan Wars -->
+<div class="slide">
+  <div class="text">
+    <h2>Afghanistan Wars</h2>
+    <p>
+      USSR invaded in 1979; withdrew 1989 due to resistance. 
+      Taliban took control in 1990s. 
+      US invaded in 2001 to combat Taliban & Al-Qaeda. 
+      NATO and allies participated in military operations. 
+      Afghanistan faced long-term instability. 
+      Reconstruction struggled amid insurgency. 
+      Wars shaped global counter-terrorism policies.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/Afghanistan.jpg" alt="Afghanistan Wars">
+  </div>
+</div>
+
+<!-- Ongoing Israel-Palestine -->
+<div class="slide">
+  <div class="text">
+    <h2>Ongoing Israel-Palestine Conflict</h2>
+    <p>
+      Violence continues between Israel and Palestinian groups. 
+      Territorial disputes and political tensions persist. 
+      Periodic clashes cause casualties and destruction. 
+      Humanitarian crises draw international attention. 
+      Peace talks have struggled to succeed. 
+      Conflict remains unresolved globally. 
+      The region experiences continuous instability.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/PalestineGenocide.jpg" alt="Palestine Genocide">
+  </div>
+</div>
+
+<!-- Peace / Conclusion -->
+<div class="slide">
+  <div class="text">
+    <h2>Conclusion & Lessons</h2>
+    <p>
+      Conflicts post-WWII shaped global politics and human history. 
+      Wars caused immense suffering but taught lessons. 
+      Studying events helps understand diplomacy and peace. 
+      Modern conflicts are interconnected worldwide. 
+      Awareness and education are key to prevent future wars. 
+      Peace, dialogue, and collaboration are essential. 
+      History guides us to build a better, stable future.
+    </p>
+  </div>
+  <div class="visual">
+    <img src="images/Peace.jpg" alt="Peace">
+  </div>
+</div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prev()">Previous</button>
+  <button onclick="next()">Next</button>
+</div>
+
+<script>
+// Slider functionality
+let slider = document.getElementById("slider");
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(i){
+  slides.forEach((s)=>s.classList.remove("active"));
+  slides[i].classList.add("active");
+  slider.style.transform = `translateX(-${i*100}vw)`;
+}
+
+function next(){ if(index<slides.length-1){ index++; showSlide(index); } }
+function prev(){ if(index>0){ index--; showSlide(index); } }
+
+document.addEventListener("keydown", e=>{
+  if(e.key==="ArrowRight"){ e.preventDefault(); next(); }
+  if(e.key==="ArrowLeft"){ e.preventDefault(); prev(); }
+});
+
+// 3D Globe
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+let renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById("globe-background").appendChild(renderer.domElement);
+
+let geometry = new THREE.SphereGeometry(5,64,64);
+let texture = new THREE.TextureLoader().load("images/WorldMap.jpg");
+let material = new THREE.MeshBasicMaterial({map: texture});
+let earth = new THREE.Mesh(geometry, material);
+scene.add(earth);
+camera.position.z = 10;
+
+function animateGlobe(){
+  requestAnimationFrame(animateGlobe);
+  earth.rotation.y += 0.0015;
+  renderer.render(scene, camera);
+}
+animateGlobe();
+
+window.addEventListener('resize', ()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Abstract moving background
+let bgCanvas = document.getElementById("backgroundCanvas");
+let bgCtx = bgCanvas.getContext("2d");
+bgCanvas.width = window.innerWidth;
+bgCanvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<150;i++){
+  particles.push({
+    x: Math.random()*bgCanvas.width,
+    y: Math.random()*bgCanvas.height,
+    vx: (Math.random()-0.5)*0.5,
+    vy: (Math.random()-0.5)*0.5,
+    radius: Math.random()*2+1,
+    alpha: Math.random()*0.5+0.3
+  });
+}
+
+function animateBG(){
+  bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+  for(let p of particles){
+    p.x += p.vx;
+    p.y += p.vy;
+    if(p.x<0)p.x=bgCanvas.width;
+    if(p.x>bgCanvas.width)p.x=0;
+    if(p.y<0)p.y=bgCanvas.height;
+    if(p.y>bgCanvas.height)p.y=0;
+    bgCtx.beginPath();
+    bgCtx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+    bgCtx.fillStyle = `rgba(0,255,255,${p.alpha})`;
+    bgCtx.fill();
+  }
+  requestAnimationFrame(animateBG);
+}
+animateBG();
+
+window.addEventListener('resize', ()=>{
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
